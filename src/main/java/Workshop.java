@@ -1,3 +1,5 @@
+import com.sun.source.tree.ReturnTree;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,13 +15,12 @@ public class Workshop {
 
     // Mayor de tres numeros
     public int mayorDeTresNumeros(int a, int b, int c) {
-        int max = Math.max(a, Math.max(b, c)); //Math.max y Math.min devuelven el mayor o menor entre dos numeros dados respectivamente. En este caso, se anidan dos Math.max: el primero compara b y c, el segundo compara el resultado con a
-        return max;
+        return Math.max(a, Math.max(b, c)); //Math.max y Math.min devuelven el mayor o menor entre dos numeros dados respectivamente. En este caso, se anidan dos Math.max: el primero compara b y c, el segundo compara el resultado con a
     }
 
     // Tabla de multiplicar
     public int[] tablaMultiplicar(int numero, int limite) {
-        int respuesta[] = new int[limite];
+        int[] respuesta = new int[limite];
         for (int i=1; i<= limite; i++) {
             respuesta[i-1] = i * numero; //Se complico mas de la cuenta porque pase por alto el hecho de que los arreglos inician desde 0 (por defecto)
         }
@@ -133,11 +134,22 @@ public class Workshop {
         return string.toString();
     }
 
-    // Método que verifica si una cadena es un palíndromo
+    //Palindromo
     public boolean esPalindromo(String cadena) {
-        // TODO: Implementar el método para verificar si una cadena es un palíndromo.
-        // Ejemplo: Si cadena = "madam", el resultado debería ser true.
-        return false;
+        boolean palindromo=false;
+        String limpieza = cadena.toLowerCase() //Convierte a minuscula todos los caracteres
+                .replaceAll("\\p{Mn}", "") // Remplaza acentos por espacios vacios
+                .replaceAll("[^a-z0-9]", ""); // Elimina caracteres no alfanuméricos
+            String invertido = new StringBuilder(limpieza)//StringBuilder es una clase la cual permite modificar mas eficientemente las cadenas de texto
+                    .reverse()//invierte el Stringbuilder
+                    .toString();// revierte el Stringbuilder a string
+            if (limpieza.equals(invertido)){ // compara ambas cadenas como ==
+                palindromo=true;
+            }
+            else{
+                palindromo=false;
+            }
+        return palindromo;
     }
 
     // Contar palabras
@@ -171,8 +183,7 @@ public class Workshop {
 
     // Posicion subcadena
     public int buscarSubcadena(String cadena, String subcadena) {
-        int posicion = cadena.indexOf(subcadena);
-        return posicion;
+        return cadena.indexOf(subcadena);
     }
 
     // Método que valida un correo electrónico
@@ -246,10 +257,145 @@ Rock crushes Scissors
         return (Math.PI*Math.pow(radio,2));
     }
 
+    //Zodiaco
     public String zoodiac(int day, int month) {
-        return "";
+        String signo ="";
+        if (month==1){
+            if (day>=1 & day<=19){
+                signo="Capricornio";
+            }
+            else if (day>=20 & day<=31){
+                signo="Acuario";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==2){
+            if (day>=1 & day<=18){
+                signo="Acuario";
+            }
+            else if (day>=19 & day<=29){
+                signo="Picsis";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==3){
+            if (day>=1 & day<=20){
+                signo="Picsis";;
+            }
+            else if (day>=21 & day<=30){
+                signo="Aries";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==4){
+            if (day>=1 & day<=19){
+                signo="Aries";
+            }
+            else if (day>=20 & day<=31){
+                signo="Tauro";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==5){
+            if (day>=1 & day<=20){
+                signo="Tauro";
+            }
+            else if (day>=21 & day<=30){
+                signo="Geminis";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==6){
+            if (day>=1 & day<=20){
+                signo="Geminis";
+            }
+            else if (day>=21 & day<=31){
+                signo="Cancer";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==7){
+            if (day>=1 & day<=22){
+                signo="Cancer";
+            }
+            else if (day>=23 & day<=30){
+                signo="Leo";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==8){
+            if (day>=1 & day<=22){
+                signo="Leo";
+            }
+            else if (day>=23 & day<31){
+                signo="Virgo";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==9){
+            if (day>=1 & day<=22){
+                signo="Virgo";
+            }
+            else if (day>=23 & day<30){
+                signo="Libra";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==10){
+            if (day>=1 & day<=22){
+                signo="Libra";
+            }
+            else if (day>=23 & day<=31){
+                signo="Escorpio";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==11){
+            if (day>=1 & day<21){
+                signo="Escorpio";
+            }
+            else if (day>=22 & day<=30){
+                signo="Sagitario";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else if (month==12){
+            if (day>=1 & day<=21){
+                signo="Sagitario";
+            }
+            else if (day>=22 & day<=31){
+                signo="Capricornio";
+            }
+            else{
+                signo="Invalid Date";
+            }
+        }
+        else{
+            signo="Invalid Date";
+        }
+        return signo;
     }
-
-
 }
 

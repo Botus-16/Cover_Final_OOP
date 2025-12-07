@@ -25,13 +25,13 @@ public class WorkshopTest {
         assertEquals(0, tester.areaCirculo(0), 0.001);
     }
 
+    //Pasado
     @Test
     public void testZoodiac() {
-        //todo zodiaco
         assertEquals("Aries", tester.zoodiac(9,4));
-        assertNotEquals("Pisces",tester.zoodiac(30,2));
+        assertNotEquals("Piscis",tester.zoodiac(30,2));
         assertEquals("Invalid Date", tester.zoodiac(31,2));
-        assertEquals("Gemini", tester.zoodiac(14,6));
+        assertEquals("Geminis", tester.zoodiac(14,6));
         assertEquals("Cancer", tester.zoodiac(22,6));
         assertNotEquals("Leo",tester.zoodiac(30,8));
     }
@@ -235,7 +235,7 @@ public class WorkshopTest {
         assertEquals("!#@321", tester.invertirCadena("123@#!"));
     }
 
-    // Test para el método esPalindromo
+    // Pasado
     @Test
     public void testEsPalindromo() {
         // Test 1: Cadena palíndroma
