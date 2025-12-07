@@ -18,7 +18,7 @@ public class WorkshopTest {
     private final Workshop tester = new Workshop();
 
     @Test
-    //Pasado
+    //Pasado con comentarios
     public void testAreaCirculo() {
         assertEquals(Math.PI, tester.areaCirculo(1), 0.001);
         assertEquals((Math.PI*100), tester.areaCirculo(10), 0.001);;//Cambio relizado: de *10 a *100
@@ -103,7 +103,7 @@ public class WorkshopTest {
         assertArrayEquals(new int[]{}, tester.serieFibonacci(0));
     }
 
-    // Test para el método sumaElementos
+    //Pasado
     @Test
     public void testSumaElementos() {
         // Test 1: Suma de elementos positivos
@@ -114,7 +114,7 @@ public class WorkshopTest {
         assertEquals(0, tester.sumaElementos(new int[]{0, 0, 0, 0}));
     }
 
-    // Test para el método promedioElementos
+    // Pasado
     @Test
     public void testPromedioElementos() {
         // Test 1: Promedio de elementos positivos
@@ -125,7 +125,7 @@ public class WorkshopTest {
         assertEquals(0.0, tester.promedioElementos(new int[]{0, 0, 0, 0}));
     }
 
-    // Test para el método encontrarElementoMayor
+    // Pasado
     @Test
     public void testEncontrarElementoMayor() {
         // Test 1: Elemento mayor en arreglo positivo
@@ -136,7 +136,7 @@ public class WorkshopTest {
         assertEquals(7, tester.encontrarElementoMayor(new int[]{7}));
     }
 
-    // Test para el método encontrarElementoMenor
+    // Pasado
     @Test
     public void testEncontrarElementoMenor() {
         // Test 1: Elemento menor en arreglo positivo
@@ -147,7 +147,7 @@ public class WorkshopTest {
         assertEquals(7, tester.encontrarElementoMenor(new int[]{7}));
     }
 
-    // Test para el método buscarElemento
+    // Pasado
     @Test
     public void testBuscarElemento() {
         // Test 1: Elemento presente en arreglo
@@ -158,7 +158,7 @@ public class WorkshopTest {
         assertFalse(tester.buscarElemento(new int[]{}, 1));
     }
 
-    // Test para el método invertirArreglo
+    // Pasado
     @Test
     public void testInvertirArreglo() {
         // Test 1: Invertir un arreglo con elementos
@@ -169,7 +169,7 @@ public class WorkshopTest {
         assertArrayEquals(new int[]{}, tester.invertirArreglo(new int[]{}));
     }
 
-    // Test para el método ordenarArreglo
+    // Pasado
     @Test
     public void testOrdenarArreglo() {
         // Test 1: Ordenar arreglo desordenado
@@ -213,7 +213,7 @@ public class WorkshopTest {
         assertArrayEquals(new int[]{1}, tester.rotarArreglo(new int[]{1}, 3));
     }
 
-    // Pasado, pero con dudas
+    // Pasado con comentarios
     @Test
     public void testContarCaracteres() {
         // Test 1: Contar caracteres en cadena
@@ -224,7 +224,7 @@ public class WorkshopTest {
         assertEquals(12, tester.contarCaracteres("Hola   mundo"));// Y esta cadena tiene 12, pues posee 2 espacios extra
     }
 
-    // Test para el método invertirCadena
+    // Pasado
     @Test
     public void testInvertirCadena() {
         // Test 1: Invertir cadena normal
@@ -232,7 +232,7 @@ public class WorkshopTest {
         // Test 2: Invertir cadena vacía
         assertEquals("", tester.invertirCadena(""));
         // Test 3: Invertir cadena con caracteres especiales
-        assertEquals("!@#321", tester.invertirCadena("123@#!"));
+        assertEquals("!#@321", tester.invertirCadena("123@#!"));
     }
 
     // Test para el método esPalindromo
@@ -247,7 +247,7 @@ public class WorkshopTest {
         assertTrue(tester.esPalindromo("Anita lava la tina"));
     }
 
-    // Test para el método contarPalabras
+    // Pasado con comentarios
     @Test
     public void testContarPalabras() {
         // Test 1: Contar palabras en cadena normal
@@ -255,7 +255,7 @@ public class WorkshopTest {
         // Test 2: Contar palabras en cadena vacía
         assertEquals(0, tester.contarPalabras(""));
         // Test 3: Contar palabras con múltiples espacios
-        assertEquals(4, tester.contarPalabras("Hola   mundo  hoy"));
+        assertEquals(3, tester.contarPalabras("Hola   mundo  hoy"));//Se supone que Hola mundo hoy son 3 palabras
     }
 
     //Pasado

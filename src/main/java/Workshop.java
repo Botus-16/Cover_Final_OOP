@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 public class Workshop {
@@ -48,53 +49,54 @@ public class Workshop {
         return new int[0];
     }
 
-    // Método que suma todos los elementos de un arreglo
+    //Suma de elementos de un arreglo
     public int sumaElementos(int[] arreglo) {
-        // TODO: Implementar el método para sumar todos los elementos de un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5], el resultado debería ser 15.
-        return 0;
+        return Arrays.stream(arreglo).sum(); // Convierte el array a un IntStream para luego sumar todos los elementos con sum().sum();
     }
 
-    // Método que calcula el promedio de los elementos de un arreglo
+    // Promedio de un arreglo
     public double promedioElementos(int[] arreglo) {
-        // TODO: Implementar el método para calcular el promedio de los elementos de un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5], el resultado debería ser 3.0.
-        return 0.0;
+        return Arrays.stream(arreglo).average().orElse(0.0);//se convierte de nuevo a IntStream y usando .average se obtiene un promedio. Como .average devuelve un tipo de dato llamado OptionalDouble se requiere .orElse para manejar cuando el promedio va vacio (como un if)
     }
 
-    // Método que encuentra el elemento mayor en un arreglo
+    // Valor mayor de un arreglo
     public int encontrarElementoMayor(int[] arreglo) {
-        // TODO: Implementar el método para encontrar el elemento mayor en un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5], el resultado debería ser 5.
-        return 0;
+        return Arrays.stream(arreglo).max().orElse(0);//se convierte de nuevo a IntStream y usando .max se obtiene el valor mayor. Igual que .average devuelve un dato opcional: optional.Int eso requiere un orElse (otra vez)
     }
 
-    // Método que encuentra el elemento menor en un arreglo
+    // Valor menor de un arreglo
     public int encontrarElementoMenor(int[] arreglo) {
-        // TODO: Implementar el método para encontrar el elemento menor en un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5], el resultado debería ser 1.
-        return 0;
+        return Arrays.stream(arreglo).min().orElse(0);//misma logica que el anterior, pero con .min esta vez
     }
 
-    // Método que busca un elemento en un arreglo
+    // Busqueda de elemento
     public boolean buscarElemento(int[] arreglo, int elemento) {
-        // TODO: Implementar el método para buscar un elemento en un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5] y elemento = 3, el resultado debería ser true.
-        return false;
+        Arrays.sort(arreglo);
+        int res= Arrays.binarySearch(arreglo, elemento);//con binarySearch se ubica el indice del elemento, si exsite se, devuelve; si no, da un negativo
+        if (res>=0){// el valor de respuesta se trasforma en un bool con un if
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
-    // Método que invierte un arreglo
+    // Inversion de un arreglo
     public int[] invertirArreglo(int[] arreglo) {
-        // TODO: Implementar el método para invertir un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5], el resultado debería ser [5, 4, 3, 2, 1].
-        return new int[0];
+        int n = arreglo.length;
+        for (int i = 0; i < n / 2; i++) {
+            int j = n - 1 - i;
+            int temp = arreglo[i];
+            arreglo[i] = arreglo[j];
+            arreglo[j] = temp;
+        }
+        return arreglo;
     }
 
-    // Método que ordena un arreglo en orden ascendente
+    // Arreglo ascendente
     public int[] ordenarArreglo(int[] arreglo) {
-        // TODO: Implementar el método para ordenar un arreglo en orden ascendente.
-        // Ejemplo: Si arreglo = [5, 4, 3, 2, 1], el resultado debería ser [1, 2, 3, 4, 5].
-        return new int[0];
+        Arrays.sort(arreglo); //sort no devuelve nada, solo organiza
+        return arreglo;
     }
 
     // Método que elimina los duplicados de un arreglo
@@ -124,11 +126,11 @@ public class Workshop {
         return string.length();//Length devuelve el numero de caracteres que posee un stringbuilder
     }
 
-    // Método que invierte una cadena
+    // invertir cadena
     public String invertirCadena(String cadena) {
-        // TODO: Implementar el método para invertir una cadena.
-        // Ejemplo: Si cadena = "Hello", el resultado debería ser "olleH".
-        return "";
+        StringBuilder string=new StringBuilder(cadena)
+                .reverse();
+        return string.toString();
     }
 
     // Método que verifica si una cadena es un palíndromo
@@ -138,11 +140,15 @@ public class Workshop {
         return false;
     }
 
-    // Método que cuenta el número de palabras en una cadena
+    // Contar palabras
     public int contarPalabras(String cadena) {
-        // TODO: Implementar el método para contar el número de palabras en una cadena.
-        // Ejemplo: Si cadena = "Este es un test", el resultado debería ser 4.
-        return 0;
+        cadena=cadena.trim();//deshacerce de los espacios al inicio y final
+        if (cadena.isEmpty())
+        {
+            return 0;
+        }
+        String[] palabras = cadena.split("\\s+");//se arma un arreglo con las palabras separadas en los espacios. \\s+ es el codigo que indica los espacios y slit busca y corta ahi
+        return palabras.length;//se devuelve la longitud del arreglo armado
     }
 
     //A mayusculas
@@ -157,18 +163,16 @@ public class Workshop {
         return cadena;
     }
 
-    // Método que reemplaza una subcadena en una cadena por otra subcadena
+    //Reemplzar subcadena
     public String reemplazarSubcadena(String cadena, String antiguaSubcadena, String nuevaSubcadena) {
-        // TODO: Implementar el método para reemplazar una subcadena en una cadena por otra subcadena.
-        // Ejemplo: Si cadena = "Hello Java", antiguaSubcadena = "Java", y nuevaSubcadena = "world", el resultado debería ser "Hello world".
-        return "";
+        cadena=cadena.replace(antiguaSubcadena, nuevaSubcadena);//parece que replace hace el trabajo solo
+        return cadena;
     }
 
-    // Método que busca una subcadena en una cadena y retorna su índice
+    // Posicion subcadena
     public int buscarSubcadena(String cadena, String subcadena) {
-        // TODO: Implementar el método para buscar una subcadena en una cadena y retornar su índice.
-        // Ejemplo: Si cadena = "Hello world" y subcadena = "world", el resultado debería ser 6.
-        return -1;
+        int posicion = cadena.indexOf(subcadena);
+        return posicion;
     }
 
     // Método que valida un correo electrónico
