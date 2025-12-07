@@ -5,25 +5,24 @@ public class Workshop {
 
     }
 
-    // Método que suma dos números enteros
+    // Suma de dos enteros
     public int sumarDosNumeros(int a, int b) {
-        // TODO: Implementar el método para retornar la suma de dos números enteros.
-        // Ejemplo: Si a = 3 y b = 5, el resultado debería ser 8.
-        return a+b;
+        return a+b; //Aqui no se requieren cambios, pues el return ya suma los dos numeros dados
     }
 
-    // Método que encuentra el mayor de tres números enteros
+    // Mayor de tres numeros
     public int mayorDeTresNumeros(int a, int b, int c) {
-        // TODO: Implementar el método para retornar el mayor de los tres números enteros.
-        // Ejemplo: Si a = 3, b = 7, y c = 5, el resultado debería ser 7.
-        return 0;
+        int max = Math.max(a, Math.max(b, c)); //Math.max y Math.min devuelven el mayor o menor entre dos numeros dados respectivamente. En este caso, se anidan dos Math.max: el primero compara b y c, el segundo compara el resultado con a
+        return max;
     }
 
-    // Método que retorna la tabla de multiplicar de un número
+    // Tabla de multiplicar
     public int[] tablaMultiplicar(int numero, int limite) {
-        // TODO: Implementar el método para retornar la tabla de multiplicar del número dado.
-        // Ejemplo: Si numero = 2 y limite = 5, el resultado debería ser [2, 4, 6, 8, 10].
-        return new int[0];
+        int respuesta[] = new int[limite];
+        for (int i=1; i<= limite; i++) {
+            respuesta[i-1] = i * numero; //Se complico mas de la cuenta porque pase por alto el hecho de que los arreglos inician desde 0 (por defecto)
+        }
+        return respuesta;
     }
 
     // Método que calcula el factorial de un número entero
@@ -119,11 +118,10 @@ public class Workshop {
         return new int[0];
     }
 
-    // Método que cuenta los caracteres en una cadena
+    //Contar caracteres
     public int contarCaracteres(String cadena) {
-        // TODO: Implementar el método para contar el número de caracteres en una cadena.
-        // Ejemplo: Si cadena = "Hello", el resultado debería ser 5.
-        return 0;
+        StringBuilder string= new StringBuilder(cadena);//Se usa Stringbuilder para poder manipular la cadena
+        return string.length();//Length devuelve el numero de caracteres que posee un stringbuilder
     }
 
     // Método que invierte una cadena
@@ -147,18 +145,16 @@ public class Workshop {
         return 0;
     }
 
-    // Método que convierte una cadena a mayúsculas
+    //A mayusculas
     public String convertirAMayusculas(String cadena) {
-        // TODO: Implementar el método para convertir una cadena a mayúsculas.
-        // Ejemplo: Si cadena = "hello", el resultado debería ser "HELLO".
-        return "";
+        cadena=cadena.toUpperCase();
+        return cadena;
     }
 
-    // Método que convierte una cadena a minúsculas
+    //A minusculas
     public String convertirAMinusculas(String cadena) {
-        // TODO: Implementar el método para convertir una cadena a minúsculas.
-        // Ejemplo: Si cadena = "HELLO", el resultado debería ser "hello".
-        return "";
+        cadena=cadena.toLowerCase();
+        return cadena;
     }
 
     // Método que reemplaza una subcadena en una cadena por otra subcadena
@@ -241,9 +237,9 @@ Rock crushes Scissors
          */
         return "";
     }
-
+    //Area circulo
     public double areaCirculo(double radio) {
-        return 0.0;
+        return (Math.PI*Math.pow(radio,2));
     }
 
     public String zoodiac(int day, int month) {

@@ -13,21 +13,21 @@ import static org.junit.jupiter.api.Assertions.*;
 //import JUNIT 4
 
 
-
 public class WorkshopTest {
 
     private final Workshop tester = new Workshop();
 
     @Test
-    //Test para el area del circulo
+    //Pasado
     public void testAreaCirculo() {
         assertEquals(Math.PI, tester.areaCirculo(1), 0.001);
-        assertEquals((Math.PI*10), tester.areaCirculo(10), 0.001);;
+        assertEquals((Math.PI*100), tester.areaCirculo(10), 0.001);;//Cambio relizado: de *10 a *100
         assertEquals(0, tester.areaCirculo(0), 0.001);
     }
 
     @Test
     public void testZoodiac() {
+        //todo zodiaco
         assertEquals("Aries", tester.zoodiac(9,4));
         assertNotEquals("Pisces",tester.zoodiac(30,2));
         assertEquals("Invalid Date", tester.zoodiac(31,2));
@@ -37,7 +37,7 @@ public class WorkshopTest {
     }
 
 
-    // Test para el método sumarDosNumeros
+    // Pasado
     @Test
     public void testSumarDosNumeros() {
         // Test 1: Suma positiva
@@ -48,7 +48,7 @@ public class WorkshopTest {
         assertEquals(-2, tester.sumarDosNumeros(-1, -1));
     }
 
-    // Test para el método mayorDeTresNumeros
+    // Pasado
     @Test
     public void testMayorDeTresNumeros() {
         // Test 1: Todos positivos, el mayor es 10
@@ -59,7 +59,7 @@ public class WorkshopTest {
         assertEquals(-1, tester.mayorDeTresNumeros(-10, -5, -1));
     }
 
-    // Test para el método tablaMultiplicar
+    // Pasado
     @Test
     public void testTablaMultiplicar() {
         // Test 1: Tabla de multiplicar de 2 hasta 5
@@ -213,15 +213,15 @@ public class WorkshopTest {
         assertArrayEquals(new int[]{1}, tester.rotarArreglo(new int[]{1}, 3));
     }
 
-    // Test para el método contarCaracteres
+    // Pasado, pero con dudas
     @Test
     public void testContarCaracteres() {
         // Test 1: Contar caracteres en cadena
-        assertEquals(13, tester.contarCaracteres("Hola mundo"));
+        assertEquals(10, tester.contarCaracteres("Hola mundo")); //Hola mundo tiene 10 carateres, no?
         // Test 2: Contar caracteres en cadena vacía
         assertEquals(0, tester.contarCaracteres(""));
         // Test 3: Contar caracteres en cadena con espacios
-        assertEquals(14, tester.contarCaracteres("Hola   mundo"));
+        assertEquals(12, tester.contarCaracteres("Hola   mundo"));// Y esta cadena tiene 12, pues posee 2 espacios extra
     }
 
     // Test para el método invertirCadena
@@ -258,7 +258,7 @@ public class WorkshopTest {
         assertEquals(4, tester.contarPalabras("Hola   mundo  hoy"));
     }
 
-    // Test para el método convertirAMayusculas
+    //Pasado
     @Test
     public void testConvertirAMayusculas() {
         // Test 1: Convertir a mayúsculas
@@ -269,7 +269,7 @@ public class WorkshopTest {
         assertEquals("", tester.convertirAMayusculas(""));
     }
 
-    // Test para el método convertirAMinusculas
+    //Pasado
     @Test
     public void testConvertirAMinusculas() {
         // Test 1: Convertir a minúsculas
