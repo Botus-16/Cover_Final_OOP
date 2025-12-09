@@ -1,7 +1,9 @@
 import com.sun.source.tree.ReturnTree;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Workshop {
     public static void main(String[] args) {
@@ -22,32 +24,63 @@ public class Workshop {
     public int[] tablaMultiplicar(int numero, int limite) {
         int[] respuesta = new int[limite];
         for (int i=1; i<= limite; i++) {
-            respuesta[i-1] = i * numero; //Se complico mas de la cuenta porque pase por alto el hecho de que los arreglos inician desde 0 (por defecto)
+            respuesta[i-1] = i * numero; //Se complicó mas de la cuenta porque pase por alto el hecho de que los arreglos inician desde 0 (por defecto)
         }
         return respuesta;
     }
 
-    // Método que calcula el factorial de un número entero
+    // Factorial
     public int factorial(int n) {
-        // TODO: Implementar el método para calcular el factorial de un número entero.
-        // Ejemplo: Si n = 5, el resultado debería ser 120.
-        // Lanzar IllegalArgumentException si n es negativo.
-        return 0;
+        if (n < 0) {
+            throw new IllegalArgumentException("Los negativos no poseen factorial");
+        }
+        // Inicializar el resultado con 1 (ya que 0! = 1!)
+        int resultado = 1;
+        // Multiplicar el resultado por i desde 2 hasta N
+        for (int i = 2; i <= n; i++) {
+            // Multiplicar el resultado actual por el número i
+            resultado = resultado*i;
+        }
+        return resultado;
     }
 
-    // Método que verifica si un número es primo
+    // Numero Primo
     public boolean esPrimo(int numero) {
-        // TODO: Implementar el método para verificar si un número es primo.
-        // Ejemplo: Si numero = 7, el resultado debería ser true.
-        return false;
+        if (numero <= 1) {
+            return false; //0 y 1 no se consideran primos
+        }
+        if (numero <= 3) {
+            return true; // 2 y 3 son primos
+        }
+
+        // 2. Descartar múltiplos de 2 y 3
+        if (numero % 2 == 0 || numero % 3 == 0) {
+            return false;
+        }
+        for (int i = 5; i * i <= numero; i = i + 6) {//se usa el que todos los divisores de un numero no primo se encuentran entre 2 y la raiz del numero
+            if (numero % i == 0 || numero % (i + 2) == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    // Método que genera una serie de Fibonacci
+    // Fibonacci
     public int[] serieFibonacci(int n) {
-        // TODO: Implementar el método para generar la serie de Fibonacci hasta el número n.
-        // Ejemplo: Si n = 5, el resultado debería ser [0, 1, 1, 2, 3].
-        // Lanzar IllegalArgumentException si n es negativo.
-        return new int[0];
+        if (n <= 0) {
+            return new int[0]; // Devuelve un array vacío si N es 0 o negativo
+        }
+        int[] serie = new int[n];
+        if (n >= 1) {
+            serie[0] = 0; // F(0)
+        }
+        if (n >= 2) {
+            serie[1] = 1; // F(1)
+        }
+        for (int i = 2; i < n; i++) {
+            serie[i] = serie[i - 1] + serie[i - 2];
+        }
+        return serie;
     }
 
     //Suma de elementos de un arreglo
@@ -74,12 +107,7 @@ public class Workshop {
     public boolean buscarElemento(int[] arreglo, int elemento) {
         Arrays.sort(arreglo);
         int res= Arrays.binarySearch(arreglo, elemento);//con binarySearch se ubica el indice del elemento, si exsite se, devuelve; si no, da un negativo
-        if (res>=0){// el valor de respuesta se trasforma en un bool con un if
-            return true;
-        }
-        else {
-            return false;
-        }
+        return res >= 0;
     }
 
     // Inversion de un arreglo
@@ -100,25 +128,33 @@ public class Workshop {
         return arreglo;
     }
 
-    // Método que elimina los duplicados de un arreglo
+    // Eliminar duplicados
     public int[] eliminarDuplicados(int[] arreglo) {
-        // TODO: Implementar el método para eliminar los duplicados de un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 2, 3, 4, 4, 5], el resultado debería ser [1, 2, 3, 4, 5].
-        return new int[0];
+        return Arrays.stream(arreglo) //se covierte el arreglo en un ArrayStream
+                .distinct()//distinct permite hacer la verificacion de elementos repetidos
+                .toArray();// se revierte a un Array el resultado, que son los elementos unicos en su orden inicial
     }
 
-    // Método que combina dos arreglos en uno solo
+    // Combinacion de arreglos
     public int[] combinarArreglos(int[] arreglo1, int[] arreglo2) {
-        // TODO: Implementar el método para combinar dos arreglos en uno solo.
-        // Ejemplo: Si arreglo1 = [1, 2, 3, 4, 5] y arreglo2 = [6, 7, 8], el resultado debería ser [1, 2, 3, 4, 5, 6, 7, 8].
-        return new int[0];
+        return IntStream.concat(Arrays.stream(arreglo1), Arrays.stream(arreglo2)) //usando la funcion concat perteneciente a Array Stream, se concatenan los arreglos
+                .toArray();
     }
 
-    // Método que rota un arreglo n posiciones
+    // Rotacion de arreglos
     public int[] rotarArreglo(int[] arreglo, int posiciones) {
-        // TODO: Implementar el método para rotar un arreglo n posiciones.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5] y posiciones = 2, el resultado debería ser [3, 4, 5, 1, 2].
-        return new int[0];
+        int n = arreglo.length;
+        if (n <= 1) {//para cuando el arreglo tiene un elemento o menos
+            return arreglo;
+        }
+        int k = posiciones % n;
+        if (k < 0) { //se calcula el desplazamiento real de los elementos hacia la derecha
+            k = n + k;
+        }
+        int[] resultado = new int[n];
+        System.arraycopy(arreglo, n - k, resultado, 0, k);
+        System.arraycopy(arreglo, 0, resultado, k, n - k);
+        return resultado;
     }
 
     //Contar caracteres
@@ -145,9 +181,6 @@ public class Workshop {
                     .toString();// revierte el Stringbuilder a string
             if (limpieza.equals(invertido)){ // compara ambas cadenas como ==
                 palindromo=true;
-            }
-            else{
-                palindromo=false;
             }
         return palindromo;
     }
@@ -231,7 +264,7 @@ public class Workshop {
         return "";
     }
 
-    public String pptls2(String game[]) {
+    public String pptls2(String[] game) {
         //Retornar player ganador o empate
             /*
             Rock = R

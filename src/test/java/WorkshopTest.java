@@ -70,7 +70,7 @@ public class WorkshopTest {
         assertArrayEquals(new int[]{0, 0, 0, 0, 0}, tester.tablaMultiplicar(0, 5));
     }
 
-    // Test para el método factorial
+    // Pasado
     @Test
     public void testFactorial() {
         // Test 1: Factorial de 5
@@ -81,7 +81,7 @@ public class WorkshopTest {
         assertEquals(1, tester.factorial(1));
     }
 
-    // Test para el método esPrimo
+    // Pasado
     @Test
     public void testEsPrimo() {
         // Test 1: Número primo
@@ -92,7 +92,7 @@ public class WorkshopTest {
         assertFalse(tester.esPrimo(-3));
     }
 
-    // Test para el método serieFibonacci
+    // Fibonacci
     @Test
     public void testSerieFibonacci() {
         // Test 1: Serie Fibonacci de 5 términos
@@ -180,7 +180,7 @@ public class WorkshopTest {
         assertArrayEquals(new int[]{1, 1, 2, 3, 3}, tester.ordenarArreglo(new int[]{3, 1, 2, 1, 3}));
     }
 
-    // Test para el método eliminarDuplicados
+    // Pasado
     @Test
     public void testEliminarDuplicados() {
         // Test 1: Eliminar duplicados en arreglo
@@ -191,7 +191,7 @@ public class WorkshopTest {
         assertArrayEquals(new int[]{}, tester.eliminarDuplicados(new int[]{}));
     }
 
-    // Test para el método combinarArreglos
+    // Pasado
     @Test
     public void testCombinarArreglos() {
         // Test 1: Combinar dos arreglos
@@ -202,7 +202,7 @@ public class WorkshopTest {
         assertArrayEquals(new int[]{}, tester.combinarArreglos(new int[]{}, new int[]{}));
     }
 
-    // Test para el método rotarArreglo
+    // Pasado
     @Test
     public void testRotarArreglo() {
         // Test 1: Rotar arreglo a la derecha
@@ -280,7 +280,7 @@ public class WorkshopTest {
         assertEquals("", tester.convertirAMinusculas(""));
     }
 
-    // Test para el método reemplazarSubcadena
+    // Pasado
     @Test
     public void testReemplazarSubcadena() {
         // Test 1: Reemplazar subcadena
@@ -291,7 +291,7 @@ public class WorkshopTest {
         assertEquals("", tester.reemplazarSubcadena("", "viejo", "nuevo"));
     }
 
-    // Test para el método buscarSubcadena
+    // Pasado
     @Test
     public void testBuscarSubcadena() {
         // Test 1: Buscar subcadena que existe
