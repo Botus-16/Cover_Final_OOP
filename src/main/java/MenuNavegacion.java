@@ -9,8 +9,6 @@ public class MenuNavegacion extends JFrame {
     private JButton button4;
     private JButton button5;
     private JPanel panelPrincipal;
-
-
     public MenuNavegacion() {
         setTitle("Menú de Navegación");
         setSize(500, 300);
@@ -23,10 +21,8 @@ public class MenuNavegacion extends JFrame {
         });
         setVisible(true);
     }
-
     private void operaciones() {
-        // Asumiendo que tu clase Calculadora está disponible
-        operacionesMatemáticas math = new operacionesMatemáticas();
+        OperacionesMatemáticas math = new OperacionesMatemáticas();
         JFrame calculatorFrame = new JFrame("Operaciones matematicas");
         calculatorFrame.setContentPane(math.getPanelPrincipal());
         calculatorFrame.pack();
@@ -34,9 +30,7 @@ public class MenuNavegacion extends JFrame {
         calculatorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         calculatorFrame.setVisible(true);
     }
-
     public static void main(String[] args) {
-        // La creación de la GUI debe hacerse en el Event Dispatch Thread (EDT)
         SwingUtilities.invokeLater(() -> new MenuNavegacion());
     }
 }
