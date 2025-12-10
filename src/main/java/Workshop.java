@@ -105,8 +105,9 @@ public class Workshop {
 
     // Busqueda de elemento
     public boolean buscarElemento(int[] arreglo, int elemento) {
-        Arrays.sort(arreglo);
-        int res= Arrays.binarySearch(arreglo, elemento);//con binarySearch se ubica el indice del elemento, si exsite se, devuelve; si no, da un negativo
+        int[] arregloCopia = Arrays.copyOf(arreglo, arreglo.length);
+        Arrays.sort(arregloCopia);
+        int res = Arrays.binarySearch(arregloCopia, elemento);
         return res >= 0;
     }
 
