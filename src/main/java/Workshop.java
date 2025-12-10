@@ -3,6 +3,8 @@ import com.sun.source.tree.ReturnTree;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class Workshop {
@@ -220,11 +222,17 @@ public class Workshop {
         return cadena.indexOf(subcadena);
     }
 
-    // Método que valida un correo electrónico
+    // Correo Electronico
     public boolean validarCorreoElectronico(String correo) {
-        // TODO: Implementar el método para validar un correo electrónico.
-        // Ejemplo: Si correo = "test@example.com", el resultado debería ser true.
-        return false;
+        final String EMAIL_PATTERN =
+                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        if (correo == null || correo.isEmpty()) {
+            return false;
+        }
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(correo);
+        return matcher.matches();
     }
 
     // Método que calcula el promedio de una lista de números

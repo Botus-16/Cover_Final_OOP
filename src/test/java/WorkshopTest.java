@@ -351,7 +351,7 @@ public class WorkshopTest {
                 tester.jugarPiedraPapelTijeraLagartoSpock("Papel").equals("Empate"));
            }
 
-
+    //Pasado
     @Test
     public void testValidarCorreoElectronico() {
         // Test 1: Correo electrónico válido

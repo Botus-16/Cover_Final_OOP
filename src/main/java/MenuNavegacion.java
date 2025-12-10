@@ -24,6 +24,11 @@ public class MenuNavegacion extends JFrame {
                 arreglos();
             }
         });
+        procesamientoCadenasButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cadenas();
+            }
+        });
         setVisible(true);
     }
     private void operaciones() {
@@ -39,6 +44,15 @@ public class MenuNavegacion extends JFrame {
         ManipulacionArreglos arreglos = new ManipulacionArreglos();
         JFrame calculatorFrame = new JFrame("Manipulacion de Arreglos");
         calculatorFrame.setContentPane(arreglos.getPanelPrincipal());
+        calculatorFrame.pack();
+        calculatorFrame.setLocationRelativeTo(null);
+        calculatorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        calculatorFrame.setVisible(true);
+    }
+    private void cadenas() {
+        ProcesamientoCadenas cadenas = new ProcesamientoCadenas();
+        JFrame calculatorFrame = new JFrame("Procesamiento de Cadenas");
+        calculatorFrame.setContentPane(cadenas.getPanelPrincipal());
         calculatorFrame.pack();
         calculatorFrame.setLocationRelativeTo(null);
         calculatorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
