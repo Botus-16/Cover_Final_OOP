@@ -6,7 +6,7 @@ public class MenuNavegacion extends JFrame {
     private JButton operacionesMatematicasButton;
     private JButton manipulacionArreglosButton;
     private JButton procesamientoCadenasButton;
-    private JButton button4;
+    private JButton conversionesButton;
     private JButton button5;
     private JPanel panelPrincipal;
     public MenuNavegacion() {
@@ -27,6 +27,11 @@ public class MenuNavegacion extends JFrame {
         procesamientoCadenasButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cadenas();
+            }
+        });
+        conversionesButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                conversiones();
             }
         });
         setVisible(true);
@@ -53,6 +58,15 @@ public class MenuNavegacion extends JFrame {
         ProcesamientoCadenas cadenas = new ProcesamientoCadenas();
         JFrame calculatorFrame = new JFrame("Procesamiento de Cadenas");
         calculatorFrame.setContentPane(cadenas.getPanelPrincipal());
+        calculatorFrame.pack();
+        calculatorFrame.setLocationRelativeTo(null);
+        calculatorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        calculatorFrame.setVisible(true);
+    }
+    private void conversiones() {
+        Conversiones conversion = new Conversiones();
+        JFrame calculatorFrame = new JFrame("Conversiones");
+        calculatorFrame.setContentPane(conversion.getPanelPrincipal());
         calculatorFrame.pack();
         calculatorFrame.setLocationRelativeTo(null);
         calculatorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

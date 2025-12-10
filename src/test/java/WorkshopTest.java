@@ -302,8 +302,6 @@ public class WorkshopTest {
         assertEquals(-1, tester.buscarSubcadena("", "subcadena"));
     }
 
-
-
     // Test para el método promedioLista
     @Test
     public void testPromedioLista() {
