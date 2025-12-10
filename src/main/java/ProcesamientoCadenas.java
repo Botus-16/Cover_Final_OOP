@@ -15,10 +15,9 @@ public class ProcesamientoCadenas extends JPanel {
     private JTextField buscarReemplazarTextField;
     private JTextField validarCorreoTextField;
     private String subcadenaBuscadaParaReemplazo = null;
-
+    Object resultado = null;
     public ProcesamientoCadenas() {
-        inputCadena.setText("Ejemplo de Cadena de Texto.");
-        resultadosTextArea.setEditable(false);
+        inputCadena.setText("Digite un texto para iniciar el programa");
         buscarReemplazarTextField.setText("");
         mayusculasButton.addActionListener(e -> ejecutarOperacion("mayusculas", false));
         minusculasButton.addActionListener(e -> ejecutarOperacion("minusculas", false));
@@ -36,8 +35,13 @@ public class ProcesamientoCadenas extends JPanel {
                 ejecutarOperacion("buscar", true);
             }
         }
-        @Override public void keyTyped(KeyEvent e) {}
-        @Override public void keyReleased(KeyEvent e) {}
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
     }
     private class CorreoKeyListener implements KeyListener {
         @Override
@@ -46,15 +50,17 @@ public class ProcesamientoCadenas extends JPanel {
                 ejecutarOperacion("validar correo", true);
             }
         }
-        @Override public void keyTyped(KeyEvent e) {}
-        @Override public void keyReleased(KeyEvent e) {}
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
     }
     private void ejecutarOperacion(String operacion, boolean esResultadoUnico) {
         try {
-            // La cadena de entrada principal siempre es la fuente de datos (excepto para validar correo)
             String cadenaOriginal = inputCadena.getText();
             Workshop workshop = new Workshop();
-            Object resultado = null;
             switch (operacion) {
                 case "mayusculas":
                     resultado = workshop.convertirAMayusculas(cadenaOriginal);
@@ -73,72 +79,43 @@ public class ProcesamientoCadenas extends JPanel {
                     break;
                 case "buscar":
                     String subcadenaABuscar = buscarReemplazarTextField.getText().trim();
-                    if (subcadenaABuscar.isEmpty() || subcadenaABuscar.equals("1. Ingrese subcadena a buscar")) {
+                    if (subcadenaABuscar.isEmpty()) {
                         throw new IllegalArgumentException("Debe ingresar la subcadena a buscar primero.");
                     }
                     int posicion = workshop.buscarSubcadena(cadenaOriginal, subcadenaABuscar);
                     if (posicion == -1) {
-                        // Si no se encuentra, limpiamos el estado.
                         subcadenaBuscadaParaReemplazo = null;
                         resultado = "La subcadena '" + subcadenaABuscar + "' NO se encontró. Intente de nuevo.";
-                        buscarReemplazarTextField.setText("1. Ingrese subcadena a buscar");
                     } else {
-                        // 🌟 Almacenar la subcadena y preparar la UI para la Etapa 2
                         subcadenaBuscadaParaReemplazo = subcadenaABuscar;
-                        buscarReemplazarTextField.setText(""); // Limpiar el campo
-                        resultado = "Subcadena almacenada ('" + subcadenaABuscar + "') en índice " + posicion + ".\n" +
-                                "Ahora ingrese el texto de reemplazo en el mismo campo y presione REEMPLAZAR.";
+                        buscarReemplazarTextField.setText("");
+                        resultado = "Subcadena almacenada ('" + subcadenaABuscar + "') en índice " + posicion + ".";
                     }
                     break;
                 case "reemplazar":
                     if (subcadenaBuscadaParaReemplazo == null) {
-                        throw new IllegalArgumentException("ERROR: Primero debe buscar y almacenar una subcadena (presione ENTER en el campo).");
+                        throw new IllegalArgumentException("Primero debe encontrar una subcadena\n(presione ENTER en el campo).");
                     }
-
                     String subcadenaAReemplazar = subcadenaBuscadaParaReemplazo;
                     String reemplazoTexto = buscarReemplazarTextField.getText();
-
-                    // Llamar al Workshop para ejecutar el reemplazo
                     String cadenaNueva = workshop.reemplazarSubcadena(cadenaOriginal, subcadenaAReemplazar, reemplazoTexto);
-
-                    // 🌟 Actualizar el JTextArea principal (inputCadena) con el resultado
                     inputCadena.setText(cadenaNueva);
-
-                    // Limpiar el estado y preparar la UI para la siguiente búsqueda
                     subcadenaBuscadaParaReemplazo = null;
-                    buscarReemplazarTextField.setText("1. Ingrese subcadena a buscar");
-
-                    resultado = "Reemplazo exitoso:\nSe reemplazó '" + subcadenaAReemplazar + "' por '" + reemplazoTexto + "'.\n";
+                    resultado = "Reemplazo exitoso:Se reemplazó '" + subcadenaAReemplazar + "' por '" + reemplazoTexto + "'.\n";
                     break;
-                case "validar_correo":
+                case "validar correo":
                     String correo = validarCorreoTextField.getText();
                     boolean esValido = workshop.validarCorreoElectronico(correo);
                     resultado = esValido ?
                             "El correo es VÁLIDO." :
                             "El correo es INVÁLIDO.";
-                    break;
-
-                default:
-                    resultado = "Operación no implementada.";
             }
-
-            // --- Mostrar Resultado ---
-            if (resultado == null) {
-                resultadosTextArea.setText("ERROR INTERNO: Resultado de operación nulo.");
-                return;
-            }
-
-            if (esResultadoUnico) {
-                resultadosTextArea.setText("Resultado de " + operacion + ":\n" + resultado.toString());
-            } else {
-                resultadosTextArea.setText("Resultado de " + operacion + ":\n" + resultado.toString());
-            }
-
-        } catch (NumberFormatException ex) {
-            resultadosTextArea.setText("ERROR: La entrada no es un número válido.");
-        } catch (Exception ex) {
-            resultadosTextArea.setText("ERROR: " + ex.getMessage());
-            ex.printStackTrace();
+        }
+        catch (Exception ex) {
+            resultado = "ERROR: " + ex.getMessage();
+        }
+        finally {
+            resultadosTextArea.setText("Resultado de " + operacion + ":\n" +resultado);
         }
     }
     public JPanel getPanelPrincipal() {

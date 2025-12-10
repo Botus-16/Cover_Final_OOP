@@ -213,13 +213,13 @@ public class Workshop {
 
     //Reemplzar subcadena
     public String reemplazarSubcadena(String cadena, String antiguaSubcadena, String nuevaSubcadena) {
-        cadena=cadena.replace(antiguaSubcadena, nuevaSubcadena);//parece que replace hace el trabajo solo
+        cadena=cadena.replace(antiguaSubcadena.toLowerCase(), nuevaSubcadena);//parece que replace hace el trabajo solo
         return cadena;
     }
 
     // Posicion subcadena
     public int buscarSubcadena(String cadena, String subcadena) {
-        return cadena.indexOf(subcadena);
+        return cadena.toLowerCase().indexOf(subcadena.toLowerCase());
     }
 
     // Correo Electronico
