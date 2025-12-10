@@ -18,12 +18,13 @@ public class ManipulacionArreglos extends JPanel {
     private JButton promediarButton;
     private JButton buscarMenorButton;
     private JButton sumarButton;
+    Object resultado = null;
 
     public ManipulacionArreglos() {
-        arregloOriginalTextArea.setText("Digite el conjunto de valores separados por comas");
+        arregloOriginalTextArea.setText("");
         ordenarAscButton.addActionListener(e -> ejecutarOperacion("ordenar", false));
         invertirButton.addActionListener(e -> ejecutarOperacion("invertir", false));
-        eliminarDuplicadosButton.addActionListener(e -> ejecutarOperacion("duplicados", false));
+        eliminarDuplicadosButton.addActionListener(e -> ejecutarOperacion("valores unicos", false));
         rotarButton.addActionListener(e -> ejecutarOperacion("rotar", false));
         sumarButton.addActionListener(e -> ejecutarOperacion("sumar", true));
         promediarButton.addActionListener(e -> ejecutarOperacion("promediar", true));
@@ -72,9 +73,8 @@ public class ManipulacionArreglos extends JPanel {
         try {
             int[] arregloOriginal = parseArrayInput(arregloOriginalTextArea.getText());
             Workshop workshop = new Workshop();
-            Object resultado = null;
             if (arregloOriginal.length == 0 && !operacion.equals("rotar")) {
-                arregloResultadoTextArea.setText("Error: El arreglo de entrada está vacío.");
+                resultado = "ERROR: El arreglo de entrada se encuentra vacio";
                 return;
             }
             switch (operacion) {
@@ -84,7 +84,7 @@ public class ManipulacionArreglos extends JPanel {
                 case "invertir":
                     resultado = workshop.invertirArreglo(arregloOriginal);
                     break;
-                case "duplicados":
+                case "valores unicos":
                     resultado = workshop.eliminarDuplicados(arregloOriginal);
                     break;
                 case "rotar":
@@ -120,27 +120,18 @@ public class ManipulacionArreglos extends JPanel {
                         resultado = "El valor " + valorBuscado + " SÍ se encontró en el arreglo.";
                     }
                     break;
-                default:
-                    resultado = "Operación no implementada.";
             }
-            if (resultado == null) {
-                arregloResultadoTextArea.setText("ERROR INTERNO: Resultado de operación nulo.");
-                return;
-            }
-            if (esResultadoUnico) {
-                if (operacion.equals("buscar")) {
-                    arregloResultadoTextArea.setText(resultado.toString());
-                } else {
-                    arregloResultadoTextArea.setText("Resultado de " + operacion + ":\n" + resultado.toString());
-                }
-            } else {
+        }
+         catch (Exception ex) {
+                resultado = ("ERROR: " + ex.getMessage());
+        }
+        finally {
+            if (resultado.getClass().isArray()) {
                 arregloResultadoTextArea.setText("Arreglo " + operacion + ":\n" + Arrays.toString((int[]) resultado));
             }
-        } catch (NumberFormatException ex) {
-            arregloResultadoTextArea.setText("ERROR: La entrada no es un número válido (Revisa el arreglo o el campo de rotación/búsqueda).");
-        } catch (Exception ex) {
-            arregloResultadoTextArea.setText("ERROR: " + ex.getMessage());
-            ex.printStackTrace();
+            else {
+                    arregloResultadoTextArea.setText("Resultado de " + operacion + ":\n" + resultado);
+                }
         }
     }
     public JPanel getPanelPrincipal() {
